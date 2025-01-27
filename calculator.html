@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            display: flexbox;
+            justify-content: center;
+            align-items: center;
+            height: 150vh;
+            background-color: bisque;
+        }
+
+        .container {
+            width: 400px;
+            background-color: gray;
+            border-radius: 20px;
+            box-shadow: 10px;
+            padding: 25px;
+        }
+
+        .calculator {
+            display: grid;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .keyboard button {
+            width: 100%;
+            padding: 20px;
+            font-size: 25px;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            background-color: rgb(255, 127, 182);
+            transition: 0.5s;
+        }
+
+        .keyboard button {
+            background-color: white;
+        }
+
+        .display {
+            display: grid;
+            grid-template-columns: repeat();
+            width: 350px;
+            background-color:darkseagreen;
+            padding: 20px;
+            font-size: 30px;
+            text-align: right;
+            border-radius: 70px;
+        }
+        .operator:nth-child(1){
+            background-color:red;
+        }
+        .operator:nth-child(2){
+            background-color:lightseagreen;
+        }
+        button:hover{
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>CALCULATOR</h2>
+    <div class="container">
+        <div class="calculator">
+            <div class="display" id="display">0</div><br>
+            <div class="keyboard">
+                <button class="operator" onclick="clearDisplay()">C</button>
+                <button class="operator" onclick="deleteLast()">CE</button>
+                <button class="operator" onclick="appendToDisplay('%')">%</button>
+                <button class="operator" onclick="appendToDisplay('/')">/</button>
+                <button class="number" onclick="appendToDisplay('1')">1</button>
+                <button class="number" onclick="appendToDisplay('2')">2</button>
+                <button class="number" onclick="appendToDisplay('3')">3</button>
+                <button class="operator" onclick="appendToDisplay('*')">*</button>
+                <button class="number" onclick="appendToDisplay('4')">4</button>
+                <button class="number" onclick="appendToDisplay('5')">5</button>
+                <button class="number" onclick="appendToDisplay('6')">6</button>
+                <button class="operator" onclick="appendToDisplay('+')">+</button>
+                <button class="number" onclick="appendToDisplay('7')">7</button>
+                <button class="number" onclick="appendToDisplay('8')">8</button>
+                <button class="number" onclick="appendToDisplay('9')">9</button>
+                <button class="operator" onclick="appendToDisplay('-')">-</button>
+                <button class="operator" onclick="appendToDisplay('00')">00</button>
+                <button class="number" onclick="appendToDisplay('0')">0</button>
+                <button class="number" onclick="appendToDisplay('.')">.</button>
+                <button class="operator" onclick="result('=')">=</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const display = document.getElementById("display")
+
+        function clearDisplay(){
+            display.innerText = "0";
+        }
+        function deleteLast(){
+            display.innerText = display.innerText.slice(0, -1) || "0";
+        }
+        function appendToDisplay(value){
+            display.innerText = display.innerText === "0" && value !== "." ?
+            value : display.innerText + value;
+        }
+        function result(){
+            try{
+                display.innerText = eval(display.innerText); 
+            }
+            catch{
+                dispaly.innerText = "ERROR";
+            }
+        }
+    </script>
+</body>
+
+</html>
